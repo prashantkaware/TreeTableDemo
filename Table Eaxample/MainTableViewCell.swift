@@ -16,6 +16,8 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
     var dataSource = [DataModel]()
     var penmentData = [DataModelStruct]()
     var delegate: cellDataChangedDelegate?
+    var selectedSectionIds = [Int]()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,26 +39,39 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
         return 50
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
         view.backgroundColor = UIColor.lightGray
         
+        
+        let buttonDropDown = UIButton(type: .system)
+        buttonDropDown.frame = CGRect(x: 15, y: 8, width: 20, height: 20)
+        buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
+        buttonDropDown.addTarget(self, action: #selector(showDetail(_:)), for: .touchUpInside)
+        buttonDropDown.tag = section
+       
+        
+        let buttonSelectSection = UIButton(type: .system)
+        buttonSelectSection.frame = CGRect(x: 45, y: 8, width: 20, height: 20)
+        buttonSelectSection.addTarget(self, action: #selector(HandleHeadeSelection(_:)), for: .touchUpInside)
+        buttonSelectSection.tag = section
+        buttonSelectSection.tag = section
+        
+        if selectedSectionIds.contains(dataSource[section].sectionId){
+            buttonDropDown.setImage(#imageLiteral(resourceName: "downArrow"), for: .normal)
+            buttonSelectSection.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
+        }else{
+            buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
+            buttonSelectSection.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
+        }
         let titleLabel = UILabel()
-        titleLabel.frame = CGRect(x: 11, y: 8, width:170, height: 18)
+        titleLabel.frame = CGRect(x: 75, y: 8, width: tableView.frame.size.width - 85, height: 18)
         titleLabel.text = dataSource[section].sectionTitle
         titleLabel.font = titleLabel.font.withSize(16)
         
-        let button = UIButton(type: .system)
-        button.setTitle("See All", for: .normal)
-        //button.setTitleColor(UIColor.customBlueColor, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.frame = CGRect(x: 303, y: 14, width: 62, height: 12)
-        button.addTarget(self, action: #selector(showDetail(_:)), for: .touchUpInside)
-        
-        button.tag = section
-        
+       
+        view.addSubview(buttonDropDown)
+        view.addSubview(buttonSelectSection)
         view.addSubview(titleLabel)
-        view.addSubview(button)
-        
         return view
     }
     
@@ -67,18 +82,35 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myTableViewCell") as! myTableViewCell
         let cellData = dataSource[indexPath.section].subcellData[indexPath.row]
+        if selectedSectionIds.contains(dataSource[indexPath.section].sectionId){
+            cell.btnSelect.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
+        }else{
+            cell.btnSelect.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
+        }
         cell.delegate = self
         cell.labelName.text = cellData
         return cell
     }
-    
+    @objc func HandleHeadeSelection(_ button:UIButton){
+        if selectedSectionIds.contains(dataSource[button.tag].sectionId){
+            selectedSectionIds = selectedSectionIds.filter({$0 != dataSource[button.tag].sectionId})
+        }else{
+            selectedSectionIds.append(dataSource[button.tag].sectionId)
+        }
+        if dataSource[button.tag].isExpanded == false{
+            delegate?.refreshTable()
+            print("didClickDropDownHeader \(button.tag)")
+            HandleExpandCollaps(index: button.tag)
+        }
+        tableSubData.reloadSections([button.tag], with: .none)
+        print(selectedSectionIds)
+    }
     //MARK: Custom delegate
     //MARK: Header custom delegates
     @objc func showDetail(_ button:UIButton){
         delegate?.refreshTable()
         print("didClickDropDownHeader \(button.tag)")
         HandleExpandCollaps(index: button.tag)
-        
     }
     func didClickDropDownHeader(index: Int) {
         print("didClickDropDownHeader \(index)")

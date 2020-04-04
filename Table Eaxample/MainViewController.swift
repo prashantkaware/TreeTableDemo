@@ -15,12 +15,12 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var penmentData = [DataModelStruct]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource.append(DataModel(sectionTitle: "First", subcellData: ["Prashant","Gajanan","Kaware"], isExpanded: true))
-        dataSource.append(DataModel(sectionTitle: "Second", subcellData: ["shubham","Gajanan","Girade"], isExpanded: true))
-        dataSource.append(DataModel(sectionTitle: "Third", subcellData: ["Jagat","Shirish","Deshmukh"], isExpanded: true))
-        dataSource.append(DataModel(sectionTitle: "Forth", subcellData: ["X","Y","Z"], isExpanded: true))
+        dataSource.append(DataModel(sectionTitle: "First", subcellData: ["Prashant","Gajanan","Kaware"], isExpanded: true, sectionId: 1))
+        dataSource.append(DataModel(sectionTitle: "Second", subcellData: ["shubham","Gajanan","Girade"], isExpanded: true, sectionId: 2))
+        dataSource.append(DataModel(sectionTitle: "Third", subcellData: ["Jagat","Shirish","Deshmukh"], isExpanded: true, sectionId: 3))
+        dataSource.append(DataModel(sectionTitle: "Forth", subcellData: ["X","Y","Z"], isExpanded: true, sectionId: 4))
         for i in dataSource{
-            penmentData.append(DataModelStruct(sectionTitle: i.sectionTitle, subcellData: i.subcellData, isExpanded: i.isExpanded))
+            penmentData.append(DataModelStruct(sectionTitle: i.sectionTitle, subcellData: i.subcellData, isExpanded: i.isExpanded, sectionId: i.sectionId))
         }
         let nib = UINib(nibName: "MainTableViewCell", bundle: nil)
         mainTableView.register(nib, forCellReuseIdentifier: "MainTableViewCell")
