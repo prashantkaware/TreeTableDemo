@@ -1,37 +1,38 @@
 //
-//  ViewController.swift
+//  MainTableViewCell.swift
 //  Table Eaxample
 //
-//  Created by Prashant on 20/03/20.
+//  Created by Prashant on 04/04/20.
 //  Copyright © 2020 Prashant. All rights reserved.
 //
 
 import UIKit
+protocol cellDataChangedDelegate: AnyObject {
+    func refreshTable()
+}
+class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource,myTableViewCellDelegate,HeaderViewDelegate  {
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,myTableViewCellDelegate,HeaderViewDelegate {
-
-    @IBOutlet weak var myTable: UITableView!
+    @IBOutlet weak var tableSubData: UITableView!
     var dataSource = [DataModel]()
     var penmentData = [DataModelStruct]()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        dataSource.append(DataModel(sectionTitle: "First", subcellData: ["Prashant","Gajanan","Kaware"], isExpanded: true))
-        dataSource.append(DataModel(sectionTitle: "Second", subcellData: ["shubham","Gajanan","Girade"], isExpanded: true))
-        dataSource.append(DataModel(sectionTitle: "Third", subcellData: ["Jagat","Shirish","Deshmukh"], isExpanded: true))
-        dataSource.append(DataModel(sectionTitle: "Forth", subcellData: ["X","Y","Z"], isExpanded: true))
-        for i in dataSource{
-            penmentData.append(DataModelStruct(sectionTitle: i.sectionTitle, subcellData: i.subcellData, isExpanded: i.isExpanded))
-        }
-        
-        myTable.delegate = self
-        myTable.dataSource = self
+    var delegate: cellDataChangedDelegate?
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        tableSubData.delegate = self
+        tableSubData.dataSource = self
         let nib = UINib(nibName: "myTableViewCell", bundle: nil)
-        myTable.register(nib, forCellReuseIdentifier: "myTableViewCell")
+        tableSubData.register(nib, forCellReuseIdentifier: "myTableViewCell")
     }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
@@ -40,7 +41,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         view.backgroundColor = UIColor.lightGray
         
         let titleLabel = UILabel()
-        titleLabel.frame = CGRect(x: 11, y: 12, width:170, height: 18)
+        titleLabel.frame = CGRect(x: 11, y: 8, width:170, height: 18)
         titleLabel.text = dataSource[section].sectionTitle
         titleLabel.font = titleLabel.font.withSize(16)
         
@@ -70,22 +71,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         cell.labelName.text = cellData
         return cell
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     //MARK: Custom delegate
     //MARK: Header custom delegates
     @objc func showDetail(_ button:UIButton){
-//        switch button.tag{
-//        case 0:
-//        //code for section 0
-//        case 1:
-//        //code for section 1
-//        default:
-//            //default code
-//        }
-         print("didClickDropDownHeader \(button.tag)")
+        delegate?.refreshTable()
+        print("didClickDropDownHeader \(button.tag)")
         HandleExpandCollaps(index: button.tag)
         
     }
@@ -105,21 +96,19 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         if dataSource[index].isExpanded{
             dataSource[index].isExpanded = false
             dataSource[index].subcellData = []
-            myTable.reloadSections([index], with: .none)
+            tableSubData.reloadSections([index], with: .none)
         }else{
             dataSource[index].isExpanded = true
             dataSource[index].subcellData = penmentData[index].subcellData
-            myTable.reloadSections([index], with: .none)
-    }
+            tableSubData.reloadSections([index], with: .none)
+        }
     }
     
     //MARK:- Table custom delegates
     
     func didSelectSubcell(index: myTableViewCell) {
-        guard let indexPath = myTable.indexPath(for: index) else {return}
+        guard let indexPath = tableSubData.indexPath(for: index) else {return}
         print(indexPath)
     }
-
-
+    
 }
-

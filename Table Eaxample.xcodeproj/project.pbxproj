@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C431992F2430CC250032BCBF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C431992E2430CC250032BCBF /* HeaderView.swift */; };
 		C43199312430CC4E0032BCBF /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43199302430CC4E0032BCBF /* HeaderView.xib */; };
+		C48154322439090400A6BFA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48154312439090400A6BFA4 /* MainViewController.swift */; };
+		C48154352439093A00A6BFA4 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48154332439093A00A6BFA4 /* MainTableViewCell.swift */; };
+		C48154362439093A00A6BFA4 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C48154342439093A00A6BFA4 /* MainTableViewCell.xib */; };
 		C4F415022425DDB300DC4EF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F415012425DDB300DC4EF3 /* AppDelegate.swift */; };
 		C4F415042425DDB300DC4EF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F415032425DDB300DC4EF3 /* ViewController.swift */; };
 		C4F415072425DDB300DC4EF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F415052425DDB300DC4EF3 /* Main.storyboard */; };
@@ -22,6 +25,9 @@
 /* Begin PBXFileReference section */
 		C431992E2430CC250032BCBF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C43199302430CC4E0032BCBF /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		C48154312439090400A6BFA4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C48154332439093A00A6BFA4 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		C48154342439093A00A6BFA4 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		C4F414FE2425DDB300DC4EF3 /* Table Eaxample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Table Eaxample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F415012425DDB300DC4EF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4F415032425DDB300DC4EF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +72,9 @@
 			children = (
 				C4F415012425DDB300DC4EF3 /* AppDelegate.swift */,
 				C4F415032425DDB300DC4EF3 /* ViewController.swift */,
+				C48154312439090400A6BFA4 /* MainViewController.swift */,
+				C48154332439093A00A6BFA4 /* MainTableViewCell.swift */,
+				C48154342439093A00A6BFA4 /* MainTableViewCell.xib */,
 				C4F415052425DDB300DC4EF3 /* Main.storyboard */,
 				C4F415082425DDB300DC4EF3 /* Assets.xcassets */,
 				C4F4150A2425DDB300DC4EF3 /* LaunchScreen.storyboard */,
@@ -138,6 +147,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48154362439093A00A6BFA4 /* MainTableViewCell.xib in Resources */,
 				C4F4150C2425DDB300DC4EF3 /* LaunchScreen.storyboard in Resources */,
 				C4F415162425DEF800DC4EF3 /* myTableViewCell.xib in Resources */,
 				C4F415092425DDB300DC4EF3 /* Assets.xcassets in Resources */,
@@ -156,6 +166,8 @@
 				C4F415042425DDB300DC4EF3 /* ViewController.swift in Sources */,
 				C431992F2430CC250032BCBF /* HeaderView.swift in Sources */,
 				C4F415182425E0C500DC4EF3 /* DataModel.swift in Sources */,
+				C48154352439093A00A6BFA4 /* MainTableViewCell.swift in Sources */,
+				C48154322439090400A6BFA4 /* MainViewController.swift in Sources */,
 				C4F415022425DDB300DC4EF3 /* AppDelegate.swift in Sources */,
 				C4F415152425DEF800DC4EF3 /* myTableViewCell.swift in Sources */,
 			);
