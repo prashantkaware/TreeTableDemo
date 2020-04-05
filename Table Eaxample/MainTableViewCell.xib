@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="265.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Industries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDe-3E-LsY">
-                                <rect key="frame" x="8" y="0.0" width="93.5" height="26.5"/>
+                                <rect key="frame" x="10" y="0.0" width="93.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jhq-Ba-D9J">
-                                <rect key="frame" x="8" y="34.5" width="304" height="231"/>
+                                <rect key="frame" x="0.0" y="34.5" width="320" height="231"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQR-KS-4K1">
@@ -42,13 +42,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jhq-Ba-D9J" secondAttribute="trailing" constant="8" id="K3U-R5-ToA"/>
+                            <constraint firstAttribute="trailing" secondItem="jhq-Ba-D9J" secondAttribute="trailing" id="K3U-R5-ToA"/>
                             <constraint firstAttribute="trailing" secondItem="nQR-KS-4K1" secondAttribute="trailing" constant="10" id="LbP-4O-rTU"/>
                             <constraint firstItem="jhq-Ba-D9J" firstAttribute="top" secondItem="IDe-3E-LsY" secondAttribute="bottom" constant="8" id="ZoU-DQ-j5K"/>
-                            <constraint firstItem="jhq-Ba-D9J" firstAttribute="leading" secondItem="3qS-sx-xDQ" secondAttribute="leading" constant="8" id="nht-gm-TCn"/>
+                            <constraint firstItem="jhq-Ba-D9J" firstAttribute="leading" secondItem="3qS-sx-xDQ" secondAttribute="leading" id="nht-gm-TCn"/>
                             <constraint firstAttribute="bottom" secondItem="jhq-Ba-D9J" secondAttribute="bottom" id="ttx-EU-0Tp"/>
                             <constraint firstItem="IDe-3E-LsY" firstAttribute="top" secondItem="3qS-sx-xDQ" secondAttribute="top" id="udX-3b-Vmj"/>
-                            <constraint firstItem="IDe-3E-LsY" firstAttribute="leading" secondItem="3qS-sx-xDQ" secondAttribute="leading" constant="8" id="ume-3B-O3a"/>
+                            <constraint firstItem="IDe-3E-LsY" firstAttribute="leading" secondItem="3qS-sx-xDQ" secondAttribute="leading" constant="10" id="ume-3B-O3a"/>
                             <constraint firstItem="nQR-KS-4K1" firstAttribute="top" secondItem="IDe-3E-LsY" secondAttribute="top" constant="8" id="yjq-gG-QxF"/>
                         </constraints>
                     </view>

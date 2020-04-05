@@ -42,47 +42,19 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
         return 50
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-//        view.backgroundColor = UIColor.lightGray
-//
-//
-//        let buttonDropDown = UIButton(type: .system)
-//        buttonDropDown.frame = CGRect(x: 15, y: 8, width: 20, height: 20)
-//        buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
-//        buttonDropDown.addTarget(self, action: #selector(showDetail(_:)), for: .touchUpInside)
-//        buttonDropDown.tag = section
-//
-//
-//        let buttonSelectSection = UIButton(type: .system)
-//        buttonSelectSection.frame = CGRect(x: 45, y: 8, width: 20, height: 20)
-//        buttonSelectSection.addTarget(self, action: #selector(HandleHeadeSelection(_:)), for: .touchUpInside)
-//        buttonSelectSection.tag = section
-//        buttonSelectSection.tag = section
-//
-//        if selectedSectionIds.contains(dataSource[section].sectionId){
-//            buttonDropDown.setImage(#imageLiteral(resourceName: "downArrow"), for: .normal)
-//            buttonSelectSection.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
-//        }else{
-//            buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
-//            buttonSelectSection.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
-//        }
-//        let titleLabel = UILabel()
-//        titleLabel.frame = CGRect(x: 75, y: 8, width: tableView.frame.size.width - 85, height: 18)
-//        titleLabel.text = dataSource[section].sectionTitle
-//        titleLabel.font = titleLabel.font.withSize(16)
-//
-//
-//        view.addSubview(buttonDropDown)
-//        view.addSubview(buttonSelectSection)
-//        view.addSubview(titleLabel)
-//        return view
-        
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
         headerView.clipsToBounds = true
         headerView.delegate = self
         headerView.btnCheckHeader.tag = section
         headerView.btnDropDown.tag = section
         headerView.labelSectionName.text = dataSource[section].sectionTitle
+        if selectedSectionIds.contains(dataSource[section].sectionId){
+            headerView.btnDropDown.setImage(#imageLiteral(resourceName: "downArrow"), for: .normal)
+            headerView.btnCheckHeader.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
+        }else{
+            headerView.btnDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
+            headerView.btnCheckHeader.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
+        }
         return headerView
     }
     
@@ -111,33 +83,30 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
         cell.labelName.text = cellData.data
         return cell
     }
-    @objc func HandleHeadeSelection(_ button:UIButton){
-        if selectedSectionIds.contains(dataSource[button.tag].sectionId){
-            selectedSectionIds = selectedSectionIds.filter({$0 != dataSource[button.tag].sectionId})
-        }else{
-            selectedSectionIds.append(dataSource[button.tag].sectionId)
-        }
-        if dataSource[button.tag].isExpanded == false{
-            delegate?.refreshTable()
-            print("didClickDropDownHeader \(button.tag)")
-            HandleExpandCollaps(index: button.tag)
-        }
-        tableSubData.reloadSections([button.tag], with: .none)
-        print(selectedSectionIds)
-    }
+
     //MARK: Custom delegate
     //MARK: Header custom delegates
-    @objc func showDetail(_ button:UIButton){
-        delegate?.refreshTable()
-        print("didClickDropDownHeader \(button.tag)")
-        HandleExpandCollaps(index: button.tag)
-    }
+   
     func didClickDropDownHeader(index: Int) {
         print("didClickDropDownHeader \(index)")
+        delegate?.refreshTable()
+        HandleExpandCollaps(index: index)
     }
     
     func didClickCheckHeader(index: Int) {
         print("didClickCheckHeader \(index)")
+        if selectedSectionIds.contains(dataSource[index].sectionId){
+            selectedSectionIds = selectedSectionIds.filter({$0 != dataSource[index].sectionId})
+        }else{
+            selectedSectionIds.append(dataSource[index].sectionId)
+        }
+        if dataSource[index].isExpanded == false{
+            delegate?.refreshTable()
+            print("didClickDropDownHeader \(index)")
+            HandleExpandCollaps(index: index)
+        }
+        tableSubData.reloadSections([index], with: .none)
+        print(selectedSectionIds)
     }
     
     func didTapView(index: Int) {
