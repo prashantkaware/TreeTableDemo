@@ -15,13 +15,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var penmentData = [DataModelStruct]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource.append(DataModel(sectionTitle: "First", subcellData: ["Prashant","Gajanan","Kaware"], isExpanded: true, sectionId: 1))
-        dataSource.append(DataModel(sectionTitle: "Second", subcellData: ["shubham","Gajanan","Girade"], isExpanded: true, sectionId: 2))
-        dataSource.append(DataModel(sectionTitle: "Third", subcellData: ["Jagat","Shirish","Deshmukh"], isExpanded: true, sectionId: 3))
-        dataSource.append(DataModel(sectionTitle: "Forth", subcellData: ["X","Y","Z"], isExpanded: true, sectionId: 4))
-        for i in dataSource{
-            penmentData.append(DataModelStruct(sectionTitle: i.sectionTitle, subcellData: i.subcellData, isExpanded: i.isExpanded, sectionId: i.sectionId))
-        }
+//        dataSource.append(DataModel(sectionTitle: "First", subcellData: ["Prashant","Gajanan","Kaware"], isExpanded: true, sectionId: 1))
+//        dataSource.append(DataModel(sectionTitle: "Second", subcellData: ["shubham","Gajanan","Girade"], isExpanded: true, sectionId: 2))
+//        dataSource.append(DataModel(sectionTitle: "Third", subcellData: ["Jagat","Shirish","Deshmukh"], isExpanded: true, sectionId: 3))
+//        dataSource.append(DataModel(sectionTitle: "Forth", subcellData: ["X","Y","Z"], isExpanded: true, sectionId: 4))
+//        for i in dataSource{
+//            penmentData.append(DataModelStruct(sectionTitle: i.sectionTitle, subcellData: i.subcellData, isExpanded: i.isExpanded, sectionId: i.sectionId))
+//        }
         
         myTable.delegate = self
         myTable.dataSource = self
@@ -67,7 +67,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "myTableViewCell") as! myTableViewCell
         let cellData = dataSource[indexPath.section].subcellData[indexPath.row]
         cell.delegate = self
-        cell.labelName.text = cellData
+       // cell.labelName.text = cellData
         return cell
     }
     override func didReceiveMemoryWarning() {

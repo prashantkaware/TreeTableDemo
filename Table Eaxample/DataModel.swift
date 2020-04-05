@@ -11,9 +11,9 @@ import UIKit
 class DataModel: NSObject {
     var sectionId: Int
     var sectionTitle: String
-    var subcellData: [String]
+    var subcellData: [SubCellDataModel]
     var isExpanded: Bool
-    init(sectionTitle: String,subcellData: [String],isExpanded: Bool, sectionId: Int) {
+    init(sectionTitle: String,subcellData: [SubCellDataModel],isExpanded: Bool, sectionId: Int) {
         self.sectionTitle = sectionTitle
         self.subcellData = subcellData
         self.isExpanded = isExpanded
@@ -25,14 +25,27 @@ class DataModel: NSObject {
 struct DataModelStruct {
     var sectionId: Int
     var sectionTitle: String
-    var subcellData: [String]
+    var subcellData: [SubCellDataModel]
     var isExpanded: Bool
-    init(sectionTitle: String,subcellData: [String],isExpanded: Bool, sectionId: Int) {
+    init(sectionTitle: String,subcellData: [SubCellDataModel],isExpanded: Bool, sectionId: Int) {
         self.sectionTitle = sectionTitle
         self.subcellData = subcellData
         self.isExpanded = isExpanded
         self.sectionId = sectionId
     }
-    
 }
+
+class SubCellDataModel: NSObject{
+    var id: Int
+    var data: String
+    init(id: Int, data: String) {
+        self.id = id
+        self.data = data
+    }
+}
+
+
+
+
+
 

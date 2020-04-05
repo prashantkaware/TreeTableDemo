@@ -15,10 +15,11 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var penmentData = [DataModelStruct]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource.append(DataModel(sectionTitle: "First", subcellData: ["Prashant","Gajanan","Kaware"], isExpanded: true, sectionId: 1))
-        dataSource.append(DataModel(sectionTitle: "Second", subcellData: ["shubham","Gajanan","Girade"], isExpanded: true, sectionId: 2))
-        dataSource.append(DataModel(sectionTitle: "Third", subcellData: ["Jagat","Shirish","Deshmukh"], isExpanded: true, sectionId: 3))
-        dataSource.append(DataModel(sectionTitle: "Forth", subcellData: ["X","Y","Z"], isExpanded: true, sectionId: 4))
+        dataSource.append(DataModel(sectionTitle: "First", subcellData: [SubCellDataModel(id: 1, data: "Prashant"),SubCellDataModel(id: 2, data: "Gajanan"),SubCellDataModel(id: 3, data: "Kaware")], isExpanded: true, sectionId: 1))
+        dataSource.append(DataModel(sectionTitle: "First", subcellData: [SubCellDataModel(id: 4, data: "shubham"),SubCellDataModel(id: 5, data: "Gajanan"),SubCellDataModel(id: 6, data: "Girade")], isExpanded: true, sectionId: 2))
+        dataSource.append(DataModel(sectionTitle: "First", subcellData: [SubCellDataModel(id: 7, data: "Jagat"),SubCellDataModel(id: 8, data: "Shirish"),SubCellDataModel(id: 9, data: "Deshmukh")], isExpanded: true, sectionId: 3))
+        dataSource.append(DataModel(sectionTitle: "First", subcellData: [SubCellDataModel(id: 10, data: "X"),SubCellDataModel(id: 11, data: "Y"),SubCellDataModel(id: 12, data: "Z")], isExpanded: true, sectionId: 4))
+        
         for i in dataSource{
             penmentData.append(DataModelStruct(sectionTitle: i.sectionTitle, subcellData: i.subcellData, isExpanded: i.isExpanded, sectionId: i.sectionId))
         }

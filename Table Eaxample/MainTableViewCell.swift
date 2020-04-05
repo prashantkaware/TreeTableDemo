@@ -17,6 +17,7 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
     var penmentData = [DataModelStruct]()
     var delegate: cellDataChangedDelegate?
     var selectedSectionIds = [Int]()
+    var subCellSectionIds = [Int]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -82,13 +83,22 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myTableViewCell") as! myTableViewCell
         let cellData = dataSource[indexPath.section].subcellData[indexPath.row]
-        if selectedSectionIds.contains(dataSource[indexPath.section].sectionId){
-            cell.btnSelect.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
-        }else{
-            cell.btnSelect.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
-        }
+        
+//        if dataSource[indexPath.section].subcellData.count == 2{
+//        if selectedSectionIds.contains(dataSource[indexPath.section].sectionId){
+//            cell.btnSelect.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
+//        }else{
+//            cell.btnSelect.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
+//        }
+//        }else{
+            if subCellSectionIds.contains(dataSource[indexPath.section].subcellData[indexPath.row].id){
+                cell.btnSelect.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
+            }else{
+                cell.btnSelect.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
+            }
+        //}
         cell.delegate = self
-        cell.labelName.text = cellData
+        cell.labelName.text = cellData.data
         return cell
     }
     @objc func HandleHeadeSelection(_ button:UIButton){
@@ -140,7 +150,13 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
     
     func didSelectSubcell(index: myTableViewCell) {
         guard let indexPath = tableSubData.indexPath(for: index) else {return}
-        print(indexPath)
+        if subCellSectionIds.contains(dataSource[indexPath.section].subcellData[indexPath.row].id){
+            subCellSectionIds = subCellSectionIds.filter({$0 != dataSource[indexPath.section].subcellData[indexPath.row].id})
+        }else{
+            subCellSectionIds.append(dataSource[indexPath.section].subcellData[indexPath.row].id)
+        }
+        tableSubData.reloadRows(at: [indexPath], with: .none)
+        print(subCellSectionIds)
     }
     
 }
