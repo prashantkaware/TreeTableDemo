@@ -10,14 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
-            <connections>
-                <outlet property="btnCheckHeader" destination="qRS-PR-rEE" id="c7n-G8-vgf"/>
-                <outlet property="btnDropDown" destination="9dM-yO-cnG" id="geH-SX-xiq"/>
-                <outlet property="contenersView" destination="a8s-Ft-YB2" id="L6p-31-B1L"/>
-                <outlet property="labelSectionName" destination="q9f-d0-QeW" id="OY4-kr-WP4"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="HeaderView" id="R5O-cU-xa5" customClass="HeaderView" customModule="Table_Eaxample" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="537" height="87"/>
@@ -40,7 +33,7 @@
                             </constraints>
                             <state key="normal" image="unselectedCircle"/>
                             <connections>
-                                <action selector="OnClickCheckHeader:" destination="-1" eventType="touchUpInside" id="xUd-zQ-2eR"/>
+                                <action selector="OnClickCheckHeader:" destination="R5O-cU-xa5" eventType="touchUpInside" id="hvl-Zz-1bf"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dM-yO-cnG">
@@ -51,7 +44,7 @@
                             </constraints>
                             <state key="normal" image="downArrow"/>
                             <connections>
-                                <action selector="onClickDropDownHeader:" destination="-1" eventType="touchUpInside" id="LJp-th-9Zj"/>
+                                <action selector="onClickDropDownHeader:" destination="R5O-cU-xa5" eventType="touchUpInside" id="mzi-A8-EFT"/>
                             </connections>
                         </button>
                     </subviews>
@@ -67,7 +60,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="AeX-a4-r7o" firstAttribute="trailing" secondItem="a8s-Ft-YB2" secondAttribute="trailing" id="4zH-JN-NGN"/>
                 <constraint firstItem="a8s-Ft-YB2" firstAttribute="leading" secondItem="AeX-a4-r7o" secondAttribute="leading" id="KdU-ll-ooT"/>
@@ -76,6 +68,12 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="AeX-a4-r7o"/>
+            <connections>
+                <outlet property="btnCheckHeader" destination="qRS-PR-rEE" id="dsM-qW-kzZ"/>
+                <outlet property="btnDropDown" destination="9dM-yO-cnG" id="mK6-ER-ISl"/>
+                <outlet property="contenersView" destination="a8s-Ft-YB2" id="yaV-sx-Xvu"/>
+                <outlet property="labelSectionName" destination="q9f-d0-QeW" id="6fM-DB-ISN"/>
+            </connections>
             <point key="canvasLocation" x="43.5" y="-234.5"/>
         </view>
     </objects>

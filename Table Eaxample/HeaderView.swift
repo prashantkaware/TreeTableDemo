@@ -14,10 +14,14 @@ protocol HeaderViewDelegate: AnyObject {
 }
 class HeaderView: UITableViewHeaderFooterView {
 
+
     @IBOutlet weak var contenersView: UIView!
     @IBOutlet weak var btnCheckHeader: UIButton!
     @IBOutlet weak var labelSectionName: UILabel!
+    
     @IBOutlet weak var btnDropDown: UIButton!
+    
+
     weak var delegate: HeaderViewDelegate?
     
     override func awakeFromNib (){
@@ -30,7 +34,13 @@ class HeaderView: UITableViewHeaderFooterView {
     @IBAction func onClickDropDownHeader(_ sender: UIButton) {
         delegate?.didClickDropDownHeader(index: sender.tag)
     }
+    //    @IBAction func onClickDropDownHeader(_ sender: UIButton) {
+//        delegate?.didClickDropDownHeader(index: sender.tag)
+//    }
     @IBAction func OnClickCheckHeader(_ sender: UIButton) {
         delegate?.didClickCheckHeader(index: sender.tag)
     }
+    //    @IBAction func OnClickCheckHeader(_ sender: UIButton) {
+//        delegate?.didClickCheckHeader(index: sender.tag)
+//    }
 }

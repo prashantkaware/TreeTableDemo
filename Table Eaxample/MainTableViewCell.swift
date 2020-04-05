@@ -26,6 +26,8 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
         tableSubData.dataSource = self
         let nib = UINib(nibName: "myTableViewCell", bundle: nil)
         tableSubData.register(nib, forCellReuseIdentifier: "myTableViewCell")
+        let headerNib = UINib(nibName: "HeaderView", bundle: nil)
+        tableSubData.register(headerNib, forHeaderFooterViewReuseIdentifier: "HeaderView")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,40 +42,48 @@ class MainTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSour
         return 50
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-        view.backgroundColor = UIColor.lightGray
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+//        view.backgroundColor = UIColor.lightGray
+//
+//
+//        let buttonDropDown = UIButton(type: .system)
+//        buttonDropDown.frame = CGRect(x: 15, y: 8, width: 20, height: 20)
+//        buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
+//        buttonDropDown.addTarget(self, action: #selector(showDetail(_:)), for: .touchUpInside)
+//        buttonDropDown.tag = section
+//
+//
+//        let buttonSelectSection = UIButton(type: .system)
+//        buttonSelectSection.frame = CGRect(x: 45, y: 8, width: 20, height: 20)
+//        buttonSelectSection.addTarget(self, action: #selector(HandleHeadeSelection(_:)), for: .touchUpInside)
+//        buttonSelectSection.tag = section
+//        buttonSelectSection.tag = section
+//
+//        if selectedSectionIds.contains(dataSource[section].sectionId){
+//            buttonDropDown.setImage(#imageLiteral(resourceName: "downArrow"), for: .normal)
+//            buttonSelectSection.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
+//        }else{
+//            buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
+//            buttonSelectSection.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
+//        }
+//        let titleLabel = UILabel()
+//        titleLabel.frame = CGRect(x: 75, y: 8, width: tableView.frame.size.width - 85, height: 18)
+//        titleLabel.text = dataSource[section].sectionTitle
+//        titleLabel.font = titleLabel.font.withSize(16)
+//
+//
+//        view.addSubview(buttonDropDown)
+//        view.addSubview(buttonSelectSection)
+//        view.addSubview(titleLabel)
+//        return view
         
-        
-        let buttonDropDown = UIButton(type: .system)
-        buttonDropDown.frame = CGRect(x: 15, y: 8, width: 20, height: 20)
-        buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
-        buttonDropDown.addTarget(self, action: #selector(showDetail(_:)), for: .touchUpInside)
-        buttonDropDown.tag = section
-       
-        
-        let buttonSelectSection = UIButton(type: .system)
-        buttonSelectSection.frame = CGRect(x: 45, y: 8, width: 20, height: 20)
-        buttonSelectSection.addTarget(self, action: #selector(HandleHeadeSelection(_:)), for: .touchUpInside)
-        buttonSelectSection.tag = section
-        buttonSelectSection.tag = section
-        
-        if selectedSectionIds.contains(dataSource[section].sectionId){
-            buttonDropDown.setImage(#imageLiteral(resourceName: "downArrow"), for: .normal)
-            buttonSelectSection.setImage(#imageLiteral(resourceName: "selectedCircle"), for: .normal)
-        }else{
-            buttonDropDown.setImage(#imageLiteral(resourceName: "upArrow"), for: .normal)
-            buttonSelectSection.setImage(#imageLiteral(resourceName: "unselectedCircle"), for: .normal)
-        }
-        let titleLabel = UILabel()
-        titleLabel.frame = CGRect(x: 75, y: 8, width: tableView.frame.size.width - 85, height: 18)
-        titleLabel.text = dataSource[section].sectionTitle
-        titleLabel.font = titleLabel.font.withSize(16)
-        
-       
-        view.addSubview(buttonDropDown)
-        view.addSubview(buttonSelectSection)
-        view.addSubview(titleLabel)
-        return view
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
+        headerView.clipsToBounds = true
+        headerView.delegate = self
+        headerView.btnCheckHeader.tag = section
+        headerView.btnDropDown.tag = section
+        headerView.labelSectionName.text = dataSource[section].sectionTitle
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
